@@ -1,4 +1,4 @@
-package aircraft;
+package fr.kronx12.aircraft;
 
 public abstract class Aircraft {
     protected long id;

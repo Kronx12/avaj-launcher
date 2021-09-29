@@ -1,6 +1,6 @@
-package simulator;
+package fr.kronx12.simulator;
 
-import aircraft.Coordinates;
+import fr.kronx12.aircraft.Coordinates;
 
 public class WeatherProvider {
     private static WeatherProvider weatherProvider = new WeatherProvider();

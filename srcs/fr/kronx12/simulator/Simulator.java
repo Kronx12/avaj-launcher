@@ -1,7 +1,8 @@
-package simulator;
+package fr.kronx12.simulator;
 
-import aircraft.AircraftFactory;
-import aircraft.InvalidTypeException;
+import fr.kronx12.aircraft.AircraftFactory;
+import fr.kronx12.aircraft.InvalidCoordinatesException;
+import fr.kronx12.aircraft.InvalidTypeException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,12 +17,12 @@ public class Simulator {
     public static final String baloon_hash = "994736b4f0aec72f6e5ae580051d012f";
 
     public static void main(String[] args) {
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
         int loop = 0;
 
         // Arguments Error
         if (args.length != 1) {
-            System.err.println("Invalid arguments count !");
+            System.out.println("Invalid arguments count !");
             return ;
         }
 
@@ -33,7 +34,7 @@ public class Simulator {
                 lines.add(Reader.nextLine());
             Reader.close();
         } catch (FileNotFoundException e) {
-            System.err.println("An error occurred.");
+            System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
@@ -44,23 +45,23 @@ public class Simulator {
                 loop = Integer.parseInt(lines.get(i));
             } else if (i != 0) {
                 if (!lines.get(i).matches(regex_normal) && !lines.get(i).matches(regex_md5)) {
-                    System.err.printf("Bad line format at line (%d) [TYPE NAME LONGITUDE LATITUDE HEIGHT]!\n", i);
+                    System.out.printf("Bad line format at line (%d) [TYPE NAME LONGITUDE LATITUDE HEIGHT]!\n", i);
                     System.exit(1);
                 } else if (lines.get(i).matches(regex_md5) &&
                         !lines.get(i).split(" ")[0].equals(helicopter_hash) &&
                         !lines.get(i).split(" ")[0].equals(jetplane_hash) &&
                         !lines.get(i).split(" ")[0].equals(baloon_hash)) {
-                    System.err.printf("No Matching Type at line (%d) !\n", i + 1);
+                    System.out.printf("No Matching Type at line (%d) !\n", i + 1);
                     System.exit(1);
                 } else if (lines.get(i).matches(regex_normal) &&
                         !lines.get(i).split(" ")[0].equals("Helicopter") &&
                         !lines.get(i).split(" ")[0].equals("JetPlane") &&
                         !lines.get(i).split(" ")[0].equals("Baloon")) {
-                    System.err.printf("No Matching Type at line (%d) !\n", i + 1);
+                    System.out.printf("No Matching Type at line (%d) !\n", i + 1);
                     System.exit(1);
                 }
             } else {
-                System.err.printf("Invalid file format at line (%d) !\n", i + 1);
+                System.out.printf("Invalid file format at line (%d) !\n", i + 1);
                 return ;
             }
         }
@@ -82,6 +83,11 @@ public class Simulator {
                     try {
                         tower.register(AircraftFactory.newAircraft("Helicopter", tokens[1], Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
                     } catch (NumberFormatException | InvalidTypeException e) { e.printStackTrace(); }
+                    catch (InvalidCoordinatesException e) {
+                        System.out.println("Parsing error");
+                        e.printStackTrace();
+                        System.exit(1);
+                    }
                     break;
                 }
                 case jetplane_hash:
@@ -89,6 +95,11 @@ public class Simulator {
                     try {
                         tower.register(AircraftFactory.newAircraft("JetPlane", tokens[1], Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
                     } catch (NumberFormatException | InvalidTypeException e) { e.printStackTrace(); }
+                    catch (InvalidCoordinatesException e) {
+                        System.out.println("Parsing error");
+                        e.printStackTrace();
+                        System.exit(1);
+                    }
                     break;
                 }
                 case baloon_hash:
@@ -96,6 +107,11 @@ public class Simulator {
                     try {
                         tower.register(AircraftFactory.newAircraft("Baloon", tokens[1], Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
                     } catch (NumberFormatException | InvalidTypeException e) { e.printStackTrace(); }
+                    catch (InvalidCoordinatesException e) {
+                        System.out.println("Parsing error");
+                        e.printStackTrace();
+                        System.exit(1);
+                    }
                     break;
                 }
             }
