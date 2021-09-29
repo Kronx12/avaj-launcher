@@ -6,10 +6,10 @@ all:
 re: fclean all
 
 run: all
-	java srcs.simulator.Simulator scenario.txt
+	java srcs.fr.kronx12.simulator.Simulator scenario.txt
 
 run_md5: all
-	java srcs.simulator.Simulator scenario_md5.txt
+	java srcs.fr.kronx12.simulator.Simulator scenario_md5.txt
 
 clean:
 	rm -rf sources.txt
