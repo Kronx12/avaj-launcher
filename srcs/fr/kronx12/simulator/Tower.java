@@ -3,6 +3,7 @@ package fr.kronx12.simulator;
 import fr.kronx12.aircraft.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Tower {
     private final ArrayList<Flyable> observers = new ArrayList<>();
@@ -19,6 +20,9 @@ public abstract class Tower {
     }
 
     protected void conditionsChanged() {
-        for (Flyable observer : observers) observer.updateConditions();
+        for (Iterator<Flyable> itr = observers.iterator(); itr.hasNext();) {
+            Flyable f = itr.next();
+            f.updateConditions();        
+	}
     }
 }

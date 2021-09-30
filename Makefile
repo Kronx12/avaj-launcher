@@ -6,16 +6,16 @@ all:
 re: fclean all
 
 run: all
-	java srcs.fr.kronx12.simulator.Simulator scenario.txt
+	cd ./srcs && java fr.kronx12.simulator.Simulator ../scenario.txt
 
 run_md5: all
-	java srcs.fr.kronx12.simulator.Simulator scenario_md5.txt
+	cd ./srcs && java fr.kronx12.simulator.Simulator ../scenario_md5.txt
 
 clean:
 	rm -rf sources.txt
 
 fclean: clean
 	find * -name "*.class" -exec rm -rf {} \;
-	rm -rf simulation.txt
+	rm -f ./srcs/simulation.txt
 
 .PHONY: all re clean fclean run run_md5
