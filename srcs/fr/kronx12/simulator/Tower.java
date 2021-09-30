@@ -20,9 +20,7 @@ public abstract class Tower {
     }
 
     protected void conditionsChanged() {
-        for (Iterator<Flyable> itr = observers.iterator(); itr.hasNext();) {
-            Flyable f = itr.next();
-            f.updateConditions();        
-	}
+        for (int i = 0; i < observers.size(); i++)
+            observers.get(i).updateConditions();
     }
 }
