@@ -1,7 +1,6 @@
 package fr.kronx12.simulator;
 
 import fr.kronx12.aircraft.AircraftFactory;
-import fr.kronx12.aircraft.InvalidCoordinatesException;
 import fr.kronx12.aircraft.InvalidTypeException;
 
 import java.io.*;
@@ -83,11 +82,6 @@ public class Simulator {
                     try {
                         tower.register(AircraftFactory.newAircraft("Helicopter", tokens[1], Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
                     } catch (NumberFormatException | InvalidTypeException e) { e.printStackTrace(); }
-                    catch (InvalidCoordinatesException e) {
-                        System.out.println("Parsing error");
-                        e.printStackTrace();
-                        System.exit(1);
-                    }
                     break;
                 }
                 case jetplane_hash:
@@ -95,11 +89,6 @@ public class Simulator {
                     try {
                         tower.register(AircraftFactory.newAircraft("JetPlane", tokens[1], Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
                     } catch (NumberFormatException | InvalidTypeException e) { e.printStackTrace(); }
-                    catch (InvalidCoordinatesException e) {
-                        System.out.println("Parsing error");
-                        e.printStackTrace();
-                        System.exit(1);
-                    }
                     break;
                 }
                 case baloon_hash:
@@ -107,11 +96,6 @@ public class Simulator {
                     try {
                         tower.register(AircraftFactory.newAircraft("Baloon", tokens[1], Integer.parseInt(tokens[2]), Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
                     } catch (NumberFormatException | InvalidTypeException e) { e.printStackTrace(); }
-                    catch (InvalidCoordinatesException e) {
-                        System.out.println("Parsing error");
-                        e.printStackTrace();
-                        System.exit(1);
-                    }
                     break;
                 }
             }
