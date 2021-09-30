@@ -1,26 +1,22 @@
-package srcs.aircraft;
+package aircraft;
 
 public abstract class Aircraft {
-    public long id;
-    public String name;
-    public String type;
-    public Coordinates coordinates;
+    protected long id;
+    protected String name;
+    protected Coordinates coordinates;
 
     private static long idCounter;
 
-    public Aircraft(String pname, Coordinates pcoordinates) {
-        this.name = pname;
-        this.coordinates = pcoordinates;
+    protected Aircraft(String name, Coordinates coordinates) {
+        this.name = name;
+        this.coordinates = coordinates;
         this.id = nextId();
     }
 
-    long nextId() {
-        Aircraft.idCounter++;
-        return (Aircraft.idCounter - 1);
+    private long nextId() {
+        return ++idCounter;
     }
-    
-    public long getId() { return (id); }
-    public String getName() { return (name); }
-    public String getType() { return (type); }
-    public Coordinates getCoordinates() { return (coordinates); }
+
+    public String getName() { return name; }
+    public long getId() { return id; }
 }
